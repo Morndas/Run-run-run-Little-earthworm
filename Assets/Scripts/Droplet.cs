@@ -3,16 +3,24 @@ using UnityEngine;
 
 public class Droplet : MonoBehaviour
 {
-    private float spinSpeed = 360f;
-    private float fadeDuration = 1f;
+    private float spinSpeed = 5000;
+    private float riseSpeed = 12f;
+    private float fadeDuration = 0.2f;
 
-    private Material material;
+    private Material[] materials;
+    private Color[] ogColors;
     private bool isCollected = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        material = GetComponentInChildren<Renderer>().material; // Assumes the droplet has a Renderer
+        MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+        materials = new Material[renderers.Length];
+        for (int i = 0 ; i < renderers.Length ; i++)
+        {
+            Debug.Log(renderers[i].name);
+            materials[i] = renderers[i].material;
+        }
     }
 
     public void Collect()
@@ -20,32 +28,38 @@ public class Droplet : MonoBehaviour
         if (!isCollected)
         {
             isCollected = true;
-            Debug.Log("BBBBBBBBBB");
             StartCoroutine(FadeOutAndDestroy());
         }
     }
 
     private IEnumerator FadeOutAndDestroy()
     {
-        Debug.Log("AAAAAAAAAAAAAAAAAAAA");
 
         float elapsedTime = 0f;
-        Color ogColor = material.color;
 
         while (elapsedTime < fadeDuration)
         {
-            // Spin the droplet
             transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime);
+            transform.Translate(0, (riseSpeed * Time.deltaTime), 0);
 
             // Fade out
-            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-            material.color = new Color(ogColor.r, ogColor.g, ogColor.b, alpha);
+            //float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            float t = elapsedTime / fadeDuration;
+            float alpha = t * t;
+
+            for (int i = 0; i < materials.Length; i++)
+            {
+                materials[i].color = new Color(materials[i].color.r, materials[i].color.g, materials[i].color.b, alpha);
+            }
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        material.color = new Color(ogColor.r, ogColor.g, ogColor.b, 0f);
+        for (int i = 0; i < materials.Length; i++)
+        {
+            materials[i].color = new Color(materials[i].color.r, materials[i].color.g, materials[i].color.b, 0f);
+        }
         Destroy(gameObject);
     }
 }

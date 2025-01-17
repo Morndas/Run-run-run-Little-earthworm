@@ -7,7 +7,7 @@ public class MoveWorm : MonoBehaviour
     [SerializeField]
     private float maxForwardSpeed;
     private float currentForwardSpeed = 0;
-    private bool isPathObstructed = false;
+    private bool canMove = true;
 
     // laneIndex : index des voies : -1=gauche, 0=milieu, 1=droite
     private int laneIndex = 0;
@@ -75,7 +75,7 @@ public class MoveWorm : MonoBehaviour
     {
         while (true)
         {
-            if (!isPathObstructed)
+            if (canMove)
             {
                 // Augmentation graduelle de la vitesse de déplacement jusqu'au max
                 currentForwardSpeed = Mathf.Clamp(currentForwardSpeed + .1f, 0, maxForwardSpeed);
@@ -116,14 +116,18 @@ public class MoveWorm : MonoBehaviour
         switch(other.tag)
         {
             case "Rock" :
-                isPathObstructed = true;
+                canMove = false;
                 currentForwardSpeed = 0;
                 break;
 
             case "Chaser" :
                 Debug.Log("GAME OVER");
-                //isPathObstructed = true;
-                //currentForwardSpeed = 0;
+                MoveChaser mc = other.transform.parent.GetComponent<MoveChaser>();
+                //other.GetComponent<MeshCollider>().isTrigger = false;
+                mc.currentForwardSpeed = 0;
+                //mc.canMove = false;
+                canMove = false;
+                currentForwardSpeed = 0;
                 break;
             case "Collectables/Droplet" :
                 //TODO : augmenter humidité etc.
@@ -136,7 +140,7 @@ public class MoveWorm : MonoBehaviour
     {
         if (other.CompareTag("Rock"))
         {
-            isPathObstructed = false;
+            canMove = true;
         }
     }
     //-------------------------------
