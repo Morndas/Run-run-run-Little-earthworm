@@ -24,12 +24,20 @@ public class MoveWorm : MonoBehaviour
     {
         wormContainerTransform = transform.parent;
         wormCollider = gameObject.GetComponent<Collider>();
-        StartCoroutine(MoveForward());
+        //StartCoroutine(MoveForward());
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (canMove)
+        {
+            // Augmentation graduelle de la vitesse de déplacement jusqu'au max
+            currentForwardSpeed = Mathf.Clamp(currentForwardSpeed + .1f, 0, maxForwardSpeed);
+            // Déplacement Z du parent direct, contenant aussi le spot et la caméra
+            wormContainerTransform.Translate(currentForwardSpeed * Time.deltaTime * Vector3.forward);
+        }
+
         Vector3 rayPosL = new Vector3((wormCollider.bounds.center.x - LANE_SIZE_X), wormCollider.bounds.center.y, (wormCollider.bounds.center.z - wormCollider.bounds.size.z / 2));
         Vector3 rayPosR = new Vector3((wormCollider.bounds.center.x + LANE_SIZE_X), wormCollider.bounds.center.y, (wormCollider.bounds.center.z - wormCollider.bounds.size.z / 2));
 
@@ -71,22 +79,6 @@ public class MoveWorm : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveForward()
-    {
-        while (true)
-        {
-            if (canMove)
-            {
-                // Augmentation graduelle de la vitesse de déplacement jusqu'au max
-                currentForwardSpeed = Mathf.Clamp(currentForwardSpeed + .1f, 0, maxForwardSpeed);
-                // Déplacement Z du parent direct, contenant aussi le spot et la caméra
-                wormContainerTransform.Translate(currentForwardSpeed * Time.deltaTime * Vector3.forward);
-            }
-
-            yield return null;
-        }
-    }
-
     private IEnumerator SwitchLane(int targetLineIndex)
     {
         float timeElapsed = 0;
@@ -124,8 +116,8 @@ public class MoveWorm : MonoBehaviour
                 Debug.Log("GAME OVER");
                 MoveChaser mc = other.transform.parent.GetComponent<MoveChaser>();
                 //other.GetComponent<MeshCollider>().isTrigger = false;
+                mc.canMove = false;
                 mc.currentForwardSpeed = 0;
-                //mc.canMove = false;
                 canMove = false;
                 currentForwardSpeed = 0;
                 break;
