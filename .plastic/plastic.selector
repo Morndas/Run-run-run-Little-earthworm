@@ -1,4 +1,0 @@
-repository "Run, run, run! Little earthworm/Run, run, run! Little earthworm@20066219948279@cloud"
-  path "/"
-    br "/main"
-    co "/main"
