@@ -18,7 +18,6 @@ public class Droplet : MonoBehaviour
         materials = new Material[renderers.Length];
         for (int i = 0 ; i < renderers.Length ; i++)
         {
-            Debug.Log(renderers[i].name);
             materials[i] = renderers[i].material;
         }
     }

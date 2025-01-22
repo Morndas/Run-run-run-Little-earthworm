@@ -111,7 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27328abb0f07ee24fbb9c88ac8abbe3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wormTransform: {fileID: 0}
   maxForwardSpeed: 30
+  currentForwardSpeed: 0
+  canMove: 1
 --- !u!1 &2450457125296379725 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5252887114838556982, guid: 3bc2be633f24dad4d9ac5c0f50bef910, type: 3}

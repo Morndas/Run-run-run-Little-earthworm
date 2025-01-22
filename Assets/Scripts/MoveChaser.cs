@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoveChaser : MonoBehaviour
@@ -11,12 +9,11 @@ public class MoveChaser : MonoBehaviour
     [SerializeField]
     private float maxForwardSpeed;
     public float currentForwardSpeed = 0;
-    [SerializeField]
-    public Boolean canMove = true;
+    public Boolean accelerate = true;
 
     private void Update()
     {
-        if (canMove)
+        if (accelerate)
         {
             // Augmentation graduelle de la vitesse de déplacement jusqu'au max
             currentForwardSpeed = Mathf.Clamp(currentForwardSpeed + 0.1f, 0, maxForwardSpeed);

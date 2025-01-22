@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Rock
   - Obstacles/Rock
   - Chaser
   - Collectables/Droplet
@@ -16,6 +15,7 @@ TagManager:
   - Water
   - UI
   - 
+  - Path Blocking Obstacles
   - 
   - 
   - 
