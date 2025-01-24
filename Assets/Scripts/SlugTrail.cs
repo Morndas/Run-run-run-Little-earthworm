@@ -11,13 +11,13 @@ public class SlugTrail : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        material = GetComponentInChildren<Renderer>().material;
+        material = GetComponent<Renderer>().material;
         StartCoroutine(FadeInAndOut());
     }
     
     private IEnumerator FadeInAndOut()
     {
-        #region Fade in
+        #region Fade in [
         float elapsedTime = 0f;
         while (elapsedTime < FADE_IN_DURATION)
         {
@@ -30,9 +30,9 @@ public class SlugTrail : MonoBehaviour
             yield return null;
         }
         material.color = new Color(material.color.r, material.color.g, material.color.b, 1f);
-        #endregion Fade in
+        #endregion ] Fade in
 
-        #region Fade out and destroy
+        #region Fade out and destroy [
         elapsedTime = 0f;
         while (elapsedTime < FADE_OUT_DURATION)
         {
@@ -46,7 +46,7 @@ public class SlugTrail : MonoBehaviour
         }
         material.color = new Color(material.color.r, material.color.g, material.color.b, 0f);
 
-        Destroy(gameObject);
-        #endregion Fade out and destroy
+        Destroy(transform.parent.gameObject);
+        #endregion ] Fade out and destroy
     }
 }

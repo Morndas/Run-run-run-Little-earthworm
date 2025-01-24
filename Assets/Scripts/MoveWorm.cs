@@ -104,6 +104,6 @@ public class MoveWorm : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         accelerate = true;
-        //accelCoroutine = null;
+        accelCoroutine = null;
     }
 }
