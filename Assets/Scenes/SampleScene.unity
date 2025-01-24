@@ -415,6 +415,10 @@ MonoBehaviour:
     weight: 1
   - prefab: {fileID: 8830169703705494207, guid: a9a79d13df45f5b49aab6d317816e302, type: 3}
     weight: 1
+  - prefab: {fileID: 8830169703705494207, guid: 96c3f9c2daa932042a332f27a578a22d, type: 3}
+    weight: 1
+  - prefab: {fileID: 8830169703705494207, guid: a80da5701acd25e48a07e9e7e37f9785, type: 3}
+    weight: 1
   numberOfSections: 8
 --- !u!4 &871254022
 Transform:

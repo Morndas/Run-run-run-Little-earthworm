@@ -26,7 +26,6 @@ public class SectionController : MonoBehaviour
             SectionsInScene[i] = Instantiate(GetRandomSection());
         }
 
-
         #region Positionnement des sections [
         //------------------------------------
         // Récupération de la taille z des sections

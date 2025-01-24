@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class Droplet : MonoBehaviour
 {
-    private float spinSpeed = 5000;
-    private float riseSpeed = 12f;
-    private float fadeDuration = 0.2f;
+    //private const float SPIN_SPEED = 5000;
+    private const float RISE_SPEED = 12f;
+    private const float FADE_DURATION = 0.2f;
 
     private Material[] materials;
-    private Color[] ogColors;
     private bool isCollected = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,14 +35,14 @@ public class Droplet : MonoBehaviour
 
         float elapsedTime = 0f;
 
-        while (elapsedTime < fadeDuration)
+        while (elapsedTime < FADE_DURATION)
         {
-            transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime);
-            transform.Translate(0, (riseSpeed * Time.deltaTime), 0);
+            //transform.Rotate(Vector3.up, SPIN_SPEED * Time.deltaTime);
+            transform.Translate(0, (RISE_SPEED * Time.deltaTime), 0);
 
             // Fade out
-            //float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-            float t = elapsedTime / fadeDuration;
+            //float alpha = Mathf.Lerp(1f, 0f, elapsedTime / FADE_OUT_DURATION);
+            float t = elapsedTime / FADE_DURATION;
             float alpha = t * t;
 
             for (int i = 0; i < materials.Length; i++)

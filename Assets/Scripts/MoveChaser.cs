@@ -17,10 +17,10 @@ public class MoveChaser : MonoBehaviour
         {
             // Augmentation graduelle de la vitesse de déplacement jusqu'au max
             currentForwardSpeed = Mathf.Clamp(currentForwardSpeed + 0.1f, 0, maxForwardSpeed);
-            // Déplacement vers l'avant en Z 
-            transform.Translate(currentForwardSpeed * Time.deltaTime * Vector3.forward);
-            // Aligne la position X avec celle du ver 
-            transform.position = new Vector3(wormTransform.position.x, transform.position.y, transform.position.z);
         }
+        // Déplacement vers l'avant en Z 
+        transform.Translate(currentForwardSpeed * Time.deltaTime * Vector3.forward);
+        // Aligne la position X avec celle du ver 
+        transform.position = new Vector3(wormTransform.position.x, transform.position.y, transform.position.z);
     }
 }

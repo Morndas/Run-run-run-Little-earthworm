@@ -1,7 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class MoveWorm : MonoBehaviour
 {
+    public bool isLeftSideObstructed = false;
+    public bool isRightSideObstructed = false;
+
     [SerializeField]
     private float maxForwardSpeed;
     private float currentForwardSpeed = 0;
@@ -12,8 +16,7 @@ public class MoveWorm : MonoBehaviour
 
     private Transform wormContainerTransform;
 
-    public bool isLeftSideObstructed = false;
-    public bool isRightSideObstructed = false;
+    private Coroutine accelCoroutine = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,9 +32,9 @@ public class MoveWorm : MonoBehaviour
         {
             // Augmentation graduelle de la vitesse de déplacement jusqu'au max
             currentForwardSpeed = Mathf.Clamp(currentForwardSpeed + .1f, 0, maxForwardSpeed);
-            // Déplacement Z du parent direct, contenant aussi le spot et la caméra
-            wormContainerTransform.Translate(currentForwardSpeed * Time.deltaTime * Vector3.forward);
         }
+        // Déplacement Z du parent direct, contenant aussi le spot et la caméra
+        wormContainerTransform.Translate(currentForwardSpeed * Time.deltaTime * Vector3.forward);
 
         // Gestion des inputs pour changement de voie
         if (Input.GetKeyDown(KeyCode.LeftArrow) && laneIndex > -1 && !isLeftSideObstructed)
@@ -48,7 +51,7 @@ public class MoveWorm : MonoBehaviour
     //-------------------------------
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Worm collision with : " + other.gameObject.name + " - (" + other.tag+")");
+        //Debug.Log("Worm collision with : " + other.gameObject.name + " - (" + other.tag+")");
         switch(other.tag)
         {
             case "Obstacles/Rock" :
@@ -58,13 +61,19 @@ public class MoveWorm : MonoBehaviour
             
             case "Obstacles/Slug Trail" :
                 accelerate = false;
-                currentForwardSpeed = 0;
+                // Divise la vitesse par 2 et reprends l'accélération après 1.5s
+                currentForwardSpeed /= 2f;
+
+                //reset du délai avant accelération si on retouche des flaques avant la fin de celui-ci
+                if (accelCoroutine != null) StopCoroutine(accelCoroutine);
+                accelCoroutine = StartCoroutine(AccelerateAfterSeconds(1.5f));
                 break;
 
             case "Chaser" :
                 Debug.Log("GAME OVER");
                 //TODO : GAME OVER
                 // Réduit la vitesse du poursuivant à 0 et l'arrête
+                if (accelCoroutine != null) StopCoroutine(accelCoroutine);
                 MoveChaser mc = other.transform.parent.GetComponent<MoveChaser>();
                 mc.accelerate = false;
                 mc.currentForwardSpeed = 0;
@@ -90,4 +99,11 @@ public class MoveWorm : MonoBehaviour
     }
     //-------------------------------
     #endregion ] Gestion des collisions
+
+    private IEnumerator AccelerateAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        accelerate = true;
+        //accelCoroutine = null;
+    }
 }
