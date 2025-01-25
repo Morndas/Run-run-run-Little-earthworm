@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuActions : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
-    public void OnClickPlay()
+    public void PlayGame()
     {
         SceneManager.LoadScene("GameScene");
     }
 
-    public void OnClickQuit()
+    public void Quit()
     {
         Debug.Log("Quit application"); // debug
         Application.Quit();

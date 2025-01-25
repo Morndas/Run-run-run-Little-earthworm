@@ -36,14 +36,17 @@ public class MoveWorm : MonoBehaviour
         // Déplacement Z du parent direct, contenant aussi le spot et la caméra
         wormContainerTransform.Translate(currentForwardSpeed * Time.deltaTime * Vector3.forward);
 
-        // Gestion des inputs pour changement de voie
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && laneIndex > -1 && !isLeftSideObstructed)
+        if (!PauseMenu.IsGamePaused)
         {
-            StartCoroutine(LaneUtils.SwitchLane(transform, --laneIndex));
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && laneIndex < 1 && !isRightSideObstructed)
-        {
-            StartCoroutine(LaneUtils.SwitchLane(transform, ++laneIndex));
+            // Gestion des inputs pour changement de voie
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && laneIndex > -1 && !isLeftSideObstructed)
+            {
+                StartCoroutine(LaneUtils.SwitchLane(transform, --laneIndex));
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && laneIndex < 1 && !isRightSideObstructed)
+            {
+                StartCoroutine(LaneUtils.SwitchLane(transform, ++laneIndex));
+            }
         }
     }
 
