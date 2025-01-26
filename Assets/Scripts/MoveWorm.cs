@@ -36,7 +36,7 @@ public class MoveWorm : MonoBehaviour
         // Déplacement Z du parent direct, contenant aussi le spot et la caméra
         wormContainerTransform.Translate(currentForwardSpeed * Time.deltaTime * Vector3.forward);
 
-        if (!PauseMenu.IsGamePaused)
+        if (!GameManager.Instance.IsGamePaused)
         {
             // Gestion des inputs pour changement de voie
             if (Input.GetKeyDown(KeyCode.LeftArrow) && laneIndex > -1 && !isLeftSideObstructed)
@@ -60,30 +60,25 @@ public class MoveWorm : MonoBehaviour
             case "Obstacles/Rock" :
                 accelerate = false;
                 currentForwardSpeed = 0;
+
+                if (accelCoroutine != null)
+                    StopCoroutine(accelCoroutine);
                 break;
             
             case "Obstacles/Slug Trail" :
                 accelerate = false;
-                // Divise la vitesse par 2 et reprends l'accélération après 1.5s
-                currentForwardSpeed /= 2f;
+                // Réduit la vitesse à vMax/2 et reprends l'accélération après 1.5s
+                currentForwardSpeed = Mathf.Min(currentForwardSpeed, (maxForwardSpeed / 2));
 
                 //reset du délai avant accelération si on retouche des flaques avant la fin de celui-ci
-                if (accelCoroutine != null) StopCoroutine(accelCoroutine);
+                if (accelCoroutine != null)
+                    StopCoroutine(accelCoroutine);
                 accelCoroutine = StartCoroutine(AccelerateAfterSeconds(1.5f));
                 break;
 
             case "Chaser" :
-                Debug.Log("GAME OVER");
-                //TODO : GAME OVER
-                // Réduit la vitesse du poursuivant à 0 et l'arrête
-                if (accelCoroutine != null) StopCoroutine(accelCoroutine);
-                MoveChaser mc = other.transform.parent.GetComponent<MoveChaser>();
-                mc.accelerate = false;
-                mc.currentForwardSpeed = 0;
-
-                // Réduit la vitesse du ver à 0 et l'arrête
-                accelerate = false;
-                currentForwardSpeed = 0;
+                // GameOver : set le timeScale à 0 et menu de GO apparait (cf. GameMenusManager)
+                GameManager.Instance.GameOver();
                 break;
 
             case "Collectables/Droplet" :

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// TODO : refactor tous les scripts de menu en Game Manager
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField]

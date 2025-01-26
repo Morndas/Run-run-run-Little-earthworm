@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// TODO : refactor tous les scripts de menu en Game Manager
-public class MainMenu : MonoBehaviour
+public class MainMenuManager : MonoBehaviour
 {
     public void PlayGame()
     {
