@@ -2,25 +2,41 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-    public bool IsGamePaused { get; set; }
-    public bool IsGameOver { get; set; }
-    public int Score { get; set; }
+    public static GameManager Instance { get; private set; }
+
+    public bool IsGamePaused { get; private set; }
+    public bool IsGameOver { get; private set; }
+
+    private float _Score;
+    public float Score => Mathf.Floor(_Score); // readonly
 
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this);
+        } else
+        {
+            Instance = this;
         }
-
-        Instance = this;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         StartGame();
+    }
+
+    public void StartGame()
+    {
+        IsGameOver = false;
+        Time.timeScale = 1f;
+    }
+
+    public void GameOver()
+    {
+        IsGameOver = true;
+        Time.timeScale = 0f;
     }
 
     public void PauseGame()
@@ -35,25 +51,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void GameOver()
+    public void AddToScore(float scoreToAdd)
     {
-        IsGameOver = true;
-        Time.timeScale = 0f;
+        _Score += scoreToAdd;
     }
 
-    public void StartGame()
-    {
-        IsGameOver = false;
-        Time.timeScale = 1f;
-    }
-
-    public void AddScore(int scoreToAdd)
-    {
-        Score += scoreToAdd;
-    }
-
-    public void ResetScore()
-    {
-        Score = 0;
-    }
+    //public void ResetScore()
+    //{
+    //    _Score = 0;
+    //}
 }

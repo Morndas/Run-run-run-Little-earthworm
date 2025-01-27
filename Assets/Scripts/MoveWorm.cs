@@ -31,14 +31,18 @@ public class MoveWorm : MonoBehaviour
         if (accelerate)
         {
             // Augmentation graduelle de la vitesse de déplacement jusqu'au max
-            currentForwardSpeed = Mathf.Clamp(currentForwardSpeed + .1f, 0, maxForwardSpeed);
+            currentForwardSpeed = Mathf.Clamp(currentForwardSpeed + .1f, 0f, maxForwardSpeed);
         }
-        // Déplacement Z du parent direct, contenant aussi le spot et la caméra
-        wormContainerTransform.Translate(currentForwardSpeed * Time.deltaTime * Vector3.forward);
 
+        // Déplacement Z du parent direct, contenant aussi le spot et la caméra
+        float forwardMoveDistance = currentForwardSpeed * Time.deltaTime;
+        wormContainerTransform.Translate(forwardMoveDistance * Vector3.forward);
+
+        // Ajout au score de la distance du déplacement
+        GameManager.Instance.AddToScore(forwardMoveDistance);
+        // Gestion des inputs pour changement de voie
         if (!GameManager.Instance.IsGamePaused)
         {
-            // Gestion des inputs pour changement de voie
             if (Input.GetKeyDown(KeyCode.LeftArrow) && laneIndex > -1 && !isLeftSideObstructed)
             {
                 StartCoroutine(LaneUtils.SwitchLane(transform, --laneIndex));
@@ -48,6 +52,7 @@ public class MoveWorm : MonoBehaviour
                 StartCoroutine(LaneUtils.SwitchLane(transform, ++laneIndex));
             }
         }
+
     }
 
     #region Gestion des collisions [
