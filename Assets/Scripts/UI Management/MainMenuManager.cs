@@ -9,7 +9,8 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        SetTopScoreUI();
+        // Chargement du top score enregistré dans l'élément d'UI
+        UIUtils.ChangeScoreUI(topScoreUIElement, persistentDataManager.LoadTopScore());
     }
 
     public void PlayGame()
@@ -21,9 +22,5 @@ public class MainMenuManager : MonoBehaviour
     {
         Debug.Log("Quit application"); // debug
         Application.Quit();
-    }
-    public void SetTopScoreUI()
-    {
-        UIUtils.ChangeScoreUI(persistentDataManager.LoadTopScore(), topScoreUIElement);
     }
 }

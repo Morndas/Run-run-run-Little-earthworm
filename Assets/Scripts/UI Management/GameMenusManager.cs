@@ -16,6 +16,7 @@ public class GameMenusManager : MonoBehaviour
 
     private void Start()
     {
+        // Chargement du top score enregistré dans l'élément d'UI du menu de Game Over
         SetTopScoreUI();
     }
 
@@ -66,7 +67,6 @@ public class GameMenusManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("GameScene");
-        // IsGameOver et timeScale restaurés au Start() du GameManager
     }
 
     public void LoadMainMenu()
@@ -81,18 +81,19 @@ public class GameMenusManager : MonoBehaviour
         Debug.Log("Quit application"); // debug
         Application.Quit();
     }
+
     #region MAJ des indicateurs de score (actuel et top score) [
     public void UpdateCurrentScoreUI()
     {
         foreach (TextMeshProUGUI currentScoreEl in currentScoreUIElements)
         {
-            UIUtils.ChangeScoreUI(GameManager.Instance.Score, currentScoreEl);
+            UIUtils.ChangeScoreUI(currentScoreEl, GameManager.Instance.Score);
         }
     }
 
     public void SetTopScoreUI()
     {
-        UIUtils.ChangeScoreUI(persistentDataManager.LoadTopScore(), topScoreUIElement);
+        UIUtils.ChangeScoreUI(topScoreUIElement, persistentDataManager.LoadTopScore());
     }
     #endregion ] MAJ des indicateurs de score (actuel et top score)
 }

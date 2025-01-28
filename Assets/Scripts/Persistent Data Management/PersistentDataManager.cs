@@ -20,8 +20,6 @@ public class PersistentDataManager : MonoBehaviour
         string json = JsonUtility.ToJson(data);
         // Ecriture des données JSON dans un fichier au chemin indiqué
         File.WriteAllText(filePath, json);
-
-        Debug.Log($"New Top Score: {newTopScore}");
     }
 
     public float LoadTopScore()
