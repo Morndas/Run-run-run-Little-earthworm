@@ -7,8 +7,10 @@ public class GameManager : MonoBehaviour
     public bool IsGamePaused { get; private set; }
     public bool IsGameOver { get; private set; }
 
-    private float _Score;
     public float Score => Mathf.Floor(_Score); // readonly
+    private float _Score;
+
+    [SerializeField] private PersistentDataManager persistentDataManager;
 
     private void Awake()
     {
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
+
     public void StartGame()
     {
         IsGameOver = false;
@@ -37,6 +40,12 @@ public class GameManager : MonoBehaviour
     {
         IsGameOver = true;
         Time.timeScale = 0f;
+
+        float topScore = persistentDataManager.LoadTopScore();
+        if (Score > topScore)
+        {
+            persistentDataManager.SaveNewTopScore(Score);
+        }
     }
 
     public void PauseGame()
@@ -55,9 +64,4 @@ public class GameManager : MonoBehaviour
     {
         _Score += scoreToAdd;
     }
-
-    //public void ResetScore()
-    //{
-    //    _Score = 0;
-    //}
 }

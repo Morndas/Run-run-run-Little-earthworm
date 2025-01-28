@@ -1,16 +1,29 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameMenusManager : MonoBehaviour
 {
+    [SerializeField] private PersistentDataManager persistentDataManager;
+
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject gameOverMenuUI;
 
+    [SerializeField] private TextMeshProUGUI[] currentScoreUIElements;
+    [SerializeField] private TextMeshProUGUI topScoreUIElement;
+
     private bool isGameStopped = false;
+
+    private void Start()
+    {
+        SetTopScoreUI();
+    }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateCurrentScoreUI();
+
         if (GameManager.Instance.IsGameOver && !isGameStopped)
         {
             StopGame();
@@ -68,4 +81,19 @@ public class GameMenusManager : MonoBehaviour
         Debug.Log("Quit application"); // debug
         Application.Quit();
     }
+    #region MAJ des indicateurs de score (actuel et top score) [
+    public void UpdateCurrentScoreUI()
+    {
+        foreach (TextMeshProUGUI currentScoreEl in currentScoreUIElements)
+        {
+            UIUtils.ChangeScoreUI(GameManager.Instance.Score, currentScoreEl);
+        }
+    }
+
+    public void SetTopScoreUI()
+    {
+        UIUtils.ChangeScoreUI(persistentDataManager.LoadTopScore(), topScoreUIElement);
+    }
+    #endregion ] MAJ des indicateurs de score (actuel et top score)
 }
+
