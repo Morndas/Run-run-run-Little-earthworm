@@ -270,9 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281cc1fc57ab282498a6b1bfc956da99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForwardSpeed: 30
   isLeftSideObstructed: 0
   isRightSideObstructed: 0
+  maxForwardSpeed: 30
 --- !u!65 &8415821439694606979
 BoxCollider:
   m_ObjectHideFlags: 0

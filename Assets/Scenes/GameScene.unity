@@ -1425,6 +1425,12 @@ MonoBehaviour:
     weight: 1
   - prefab: {fileID: 8830169703705494207, guid: a80da5701acd25e48a07e9e7e37f9785, type: 3}
     weight: 1
+  - prefab: {fileID: 6868052401520113281, guid: 2414db9e76be2ae47b24a19bf1e49450, type: 3}
+    weight: 1
+  - prefab: {fileID: 6868052401520113281, guid: 8ac2a25980664e74d9d9931f1583eb15, type: 3}
+    weight: 1
+  - prefab: {fileID: 6868052401520113281, guid: d1d9bce3ed3974e429802b0294b6771b, type: 3}
+    weight: 1
   numberOfSections: 8
 --- !u!4 &871254022
 Transform:
@@ -3143,11 +3149,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2796070027153459511, guid: 887e14841e815584a8dc32d38a24c217, type: 3}
+      propertyPath: m_Mass
+      value: 0.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796070027153459511, guid: 887e14841e815584a8dc32d38a24c217, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796070027153459511, guid: 887e14841e815584a8dc32d38a24c217, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3904136648649045181, guid: 887e14841e815584a8dc32d38a24c217, type: 3}
       propertyPath: m_Name
       value: Worm
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2796070027153459511, guid: 887e14841e815584a8dc32d38a24c217, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
