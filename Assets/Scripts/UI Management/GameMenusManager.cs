@@ -29,7 +29,7 @@ public class GameMenusManager : MonoBehaviour
         {
             StopGame();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        else if (!GameManager.Instance.IsGameOver && Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameManager.Instance.IsGamePaused)
             {

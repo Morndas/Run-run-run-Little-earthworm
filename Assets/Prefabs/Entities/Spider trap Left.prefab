@@ -437,9 +437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1daeaf4eafd1f6e46b41d64758ea35bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FALL_DOWN_SPEED: 25
   spider: {fileID: 8252355443043993002}
-  spiderCollider: {fileID: 5471959435672213946}
+  spiderCollider: {fileID: 9144080054853398432}
 --- !u!1001 &625706007152878721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -611,11 +610,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 875ebc29476ff434c8cc9f879a883b12, type: 3}
---- !u!135 &5471959435672213946 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 7943382178893770926, guid: 875ebc29476ff434c8cc9f879a883b12, type: 3}
-  m_PrefabInstance: {fileID: 2723796090598418708}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8252355443043993002 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6290015276881767614, guid: 875ebc29476ff434c8cc9f879a883b12, type: 3}
@@ -624,6 +618,11 @@ GameObject:
 --- !u!4 &8776830823699996432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6629667250295092740, guid: 875ebc29476ff434c8cc9f879a883b12, type: 3}
+  m_PrefabInstance: {fileID: 2723796090598418708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &9144080054853398432 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6569223811121678004, guid: 875ebc29476ff434c8cc9f879a883b12, type: 3}
   m_PrefabInstance: {fileID: 2723796090598418708}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3942922526781005089

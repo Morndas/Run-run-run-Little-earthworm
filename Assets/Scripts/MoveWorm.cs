@@ -74,21 +74,11 @@ public class MoveWorm : MonoBehaviour
         switch(other.tag)
         {
             case "Obstacles/Rock" :
-                accelerate = false;
-                currentForwardSpeed = 0;
-
-                if (accelCoroutine != null)
-                    StopCoroutine(accelCoroutine);
+                DecreaseWormSpeed(0, false);
                 break;
             
             case "Obstacles/Slug Trail" :
-                accelerate = false;
-                // Réduit la vitesse à vMax/2 et reprends l'accélération après 1.5s
-                currentForwardSpeed = Mathf.Min(currentForwardSpeed, (maxForwardSpeed / 2));
-
-                //reset du délai avant accelération si on retouche des flaques avant la fin de celui-ci
-                if (accelCoroutine != null)
-                    StopCoroutine(accelCoroutine);
+                DecreaseWormSpeed((maxForwardSpeed / 2), false);
                 accelCoroutine = StartCoroutine(AccelerateAfterSeconds(1.5f));
                 break;
 
@@ -98,11 +88,12 @@ public class MoveWorm : MonoBehaviour
                 break;
 
             case "Foe/Spider" :
-                accelerate = false;
-                currentForwardSpeed = 0;
-
-                if (accelCoroutine != null)
-                    StopCoroutine(accelCoroutine);
+                DecreaseWormSpeed(0, false);
+                if (true) // test entortillage
+                {
+                    // GameOver : set le timeScale à 0 et menu de GO apparait (cf. GameMenusManager)
+                    GameManager.Instance.GameOver();
+                }
                 break;
 
             case "Collectables/Droplet" :
@@ -127,5 +118,19 @@ public class MoveWorm : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         accelerate = true;
         accelCoroutine = null;
+    }
+
+    private void DecreaseWormSpeed(float newSpeed, bool newAccelerate)
+    {
+        currentForwardSpeed = Mathf.Min(currentForwardSpeed, newSpeed);
+
+        accelerate = newAccelerate;
+
+        // On arrête les coroutines en cours qui font accélerer le ver après X secondes
+        if (!accelerate && accelCoroutine != null)
+        {
+            StopCoroutine(accelCoroutine);
+            accelCoroutine = null;
+        }
     }
 }

@@ -8,4 +8,10 @@ public class WeightedPrefabs
 {
     public GameObject prefab;
     public float weight;
+
+    public WeightedPrefabs(GameObject prefab, float weight)
+    {
+        this.prefab = prefab;
+        this.weight = weight;
+    }
 }

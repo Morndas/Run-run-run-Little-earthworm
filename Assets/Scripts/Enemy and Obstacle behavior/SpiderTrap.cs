@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SpiderTrap : MonoBehaviour
 {
-    [SerializeField] // debug
-    private float FALL_DOWN_SPEED = 30f;
+    private const float FALL_DOWN_SPEED = 25f;
 
     [SerializeField] private GameObject spider;
     [SerializeField] private Collider spiderCollider;
@@ -21,14 +20,15 @@ public class SpiderTrap : MonoBehaviour
 
     private IEnumerator FallAndCatchPrey(Collider other)
     {
-        //TODO : position imprécise
+        // Position cible = position y du ver et x, z de l'araignée (bouge pas)
+        //TODO : recalculer, position imprécise
         Vector3 targetpos = new Vector3(spider.transform.position.x, (other.transform.position.y), spider.transform.position.z);
-        Debug.Log("targetpos : " + targetpos);
+        
         float fallDistance = spider.transform.position.y - targetpos.y;
         float fallDuration = fallDistance / FALL_DOWN_SPEED;
 
         Quaternion startRotation = spider.transform.rotation;
-        //Quaternion targetRotation = Quaternion.Euler(0, startRotation.eulerAngles.y, startRotation.eulerAngles.z);
+        //Quaternion targetRotation = Quaternion.Euler(0, startRotation.eulerAngles.y, startRotation.eulerAngles.z); // MARCHE PAS, MAUVAISE ROTATION
         Quaternion targetRotation = Quaternion.Euler(0, 90, 0);
 
         float timeElapsed = 0f;
@@ -44,7 +44,6 @@ public class SpiderTrap : MonoBehaviour
             yield return null;
         }
 
-        spider.transform.position = targetpos;
-        spider.transform.rotation = targetRotation;
+        spider.transform.SetPositionAndRotation(targetpos, targetRotation);
     }
 }

@@ -1412,26 +1412,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d1673cfab4a284aa56c37eca89d231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lvl1Sections:
+  lvl0Sections:
   - prefab: {fileID: 7577627422880395320, guid: 3dc50fa85842d174182383cb416ce39e, type: 3}
     weight: 2
-  - prefab: {fileID: 8830169703705494207, guid: 780bcdcfd9853b04c8cfe356f0237260, type: 3}
+  - prefab: {fileID: 8830169703705494207, guid: a9a79d13df45f5b49aab6d317816e302, type: 3}
     weight: 1
   - prefab: {fileID: 8830169703705494207, guid: c3fb05e811c001c4cb08b97364cf699d, type: 3}
     weight: 1
-  - prefab: {fileID: 8830169703705494207, guid: a9a79d13df45f5b49aab6d317816e302, type: 3}
+  - prefab: {fileID: 8830169703705494207, guid: 780bcdcfd9853b04c8cfe356f0237260, type: 3}
     weight: 1
-  - prefab: {fileID: 8830169703705494207, guid: 96c3f9c2daa932042a332f27a578a22d, type: 3}
-    weight: 0
+  lvl1Sections:
   - prefab: {fileID: 8830169703705494207, guid: a80da5701acd25e48a07e9e7e37f9785, type: 3}
-    weight: 0
-  - prefab: {fileID: 6868052401520113281, guid: 2414db9e76be2ae47b24a19bf1e49450, type: 3}
-    weight: 1
+    weight: 1.5
+  - prefab: {fileID: 8830169703705494207, guid: 96c3f9c2daa932042a332f27a578a22d, type: 3}
+    weight: 1.5
+  lvl2Sections:
   - prefab: {fileID: 6868052401520113281, guid: 8ac2a25980664e74d9d9931f1583eb15, type: 3}
+    weight: 1
+  - prefab: {fileID: 6868052401520113281, guid: 2414db9e76be2ae47b24a19bf1e49450, type: 3}
     weight: 1
   - prefab: {fileID: 6868052401520113281, guid: d1d9bce3ed3974e429802b0294b6771b, type: 3}
     weight: 1
-  numberOfSections: 8
+  phaseNumber: 0
+  instantiableSections: []
+  nbOfSectionLevelsToUse: 1
 --- !u!4 &871254022
 Transform:
   m_ObjectHideFlags: 0
