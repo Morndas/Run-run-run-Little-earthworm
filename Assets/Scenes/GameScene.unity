@@ -1422,9 +1422,9 @@ MonoBehaviour:
   - prefab: {fileID: 8830169703705494207, guid: a9a79d13df45f5b49aab6d317816e302, type: 3}
     weight: 1
   - prefab: {fileID: 8830169703705494207, guid: 96c3f9c2daa932042a332f27a578a22d, type: 3}
-    weight: 1
+    weight: 0
   - prefab: {fileID: 8830169703705494207, guid: a80da5701acd25e48a07e9e7e37f9785, type: 3}
-    weight: 1
+    weight: 0
   - prefab: {fileID: 6868052401520113281, guid: 2414db9e76be2ae47b24a19bf1e49450, type: 3}
     weight: 1
   - prefab: {fileID: 6868052401520113281, guid: 8ac2a25980664e74d9d9931f1583eb15, type: 3}
@@ -3237,7 +3237,7 @@ PrefabInstance:
       objectReference: {fileID: 1799163089}
     - target: {fileID: 6131324156974283857, guid: b20960ae883f44c4983253429e0720d9, type: 3}
       propertyPath: maxForwardSpeed
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

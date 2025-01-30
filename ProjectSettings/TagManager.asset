@@ -8,6 +8,8 @@ TagManager:
   - Chaser
   - Collectables/Droplet
   - Obstacles/Slug Trail
+  - Current Score
+  - Foe/Spider
   layers:
   - Default
   - TransparentFX

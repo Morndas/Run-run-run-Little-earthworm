@@ -133,6 +133,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spider trap Middle
       objectReference: {fileID: 0}
+    - target: {fileID: 4158168007413327007, guid: ad66f6f26c070e94eb716835fc6d640e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7
+      objectReference: {fileID: 0}
     - target: {fileID: 5410637788423328185, guid: ad66f6f26c070e94eb716835fc6d640e, type: 3}
       propertyPath: m_SpotAngle
       value: 50.404133
