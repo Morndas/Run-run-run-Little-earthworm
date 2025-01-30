@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2686823641670114093, guid: 3dc50fa85842d174182383cb416ce39e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686823641670114093, guid: 3dc50fa85842d174182383cb416ce39e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686823641670114093, guid: 3dc50fa85842d174182383cb416ce39e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686823641670114093, guid: 3dc50fa85842d174182383cb416ce39e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -48,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2686823641670114093, guid: 3dc50fa85842d174182383cb416ce39e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7577627422880395320, guid: 3dc50fa85842d174182383cb416ce39e, type: 3}
       propertyPath: m_Name
       value: Tunnel Section (Spider MG) Variant
@@ -73,9 +89,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1382773751812906388}
     m_Modifications:
+    - target: {fileID: 727879655340139422, guid: ad66f6f26c070e94eb716835fc6d640e, type: 3}
+      propertyPath: ROTATION_SPEED
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 811437066767474663, guid: ad66f6f26c070e94eb716835fc6d640e, type: 3}
       propertyPath: m_Name
       value: Spider trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749574421428112262, guid: ad66f6f26c070e94eb716835fc6d640e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410637788423328185, guid: ad66f6f26c070e94eb716835fc6d640e, type: 3}
+      propertyPath: m_Intensity
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7777456402883648764, guid: ad66f6f26c070e94eb716835fc6d640e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -116,6 +144,18 @@ PrefabInstance:
     - target: {fileID: 7777456402883648764, guid: ad66f6f26c070e94eb716835fc6d640e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776830823699996432, guid: ad66f6f26c070e94eb716835fc6d640e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776830823699996432, guid: ad66f6f26c070e94eb716835fc6d640e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776830823699996432, guid: ad66f6f26c070e94eb716835fc6d640e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

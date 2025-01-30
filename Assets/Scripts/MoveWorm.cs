@@ -51,6 +51,17 @@ public class MoveWorm : MonoBehaviour
             {
                 StartCoroutine(LaneUtils.SwitchLane(transform, ++laneIndex));
             }
+            //DEBUG
+            else if (Input.GetKeyDown(KeyCode.Space) && currentForwardSpeed == 0)
+            {
+                accelerate = true;
+                currentForwardSpeed = 30f;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                accelerate = false;
+                currentForwardSpeed = 0;
+            }
         }
 
     }
@@ -84,6 +95,14 @@ public class MoveWorm : MonoBehaviour
             case "Chaser" :
                 // GameOver : set le timeScale à 0 et menu de GO apparait (cf. GameMenusManager)
                 GameManager.Instance.GameOver();
+                break;
+
+            case "Foe/Spider" :
+                accelerate = false;
+                currentForwardSpeed = 0;
+
+                if (accelCoroutine != null)
+                    StopCoroutine(accelCoroutine);
                 break;
 
             case "Collectables/Droplet" :
