@@ -3197,7 +3197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1338276868917481068, guid: b20960ae883f44c4983253429e0720d9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -50
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 1338276868917481068, guid: b20960ae883f44c4983253429e0720d9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3241,7 +3241,7 @@ PrefabInstance:
       objectReference: {fileID: 1799163089}
     - target: {fileID: 6131324156974283857, guid: b20960ae883f44c4983253429e0720d9, type: 3}
       propertyPath: maxForwardSpeed
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
