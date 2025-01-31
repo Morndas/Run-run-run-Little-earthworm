@@ -24,7 +24,7 @@ public class SectionController : MonoBehaviour
      * Phase 2 : caillous + limaces (très encombré)
      * Phase 3 : caillous + limaces + araignées (peu encombré)
      * Phase 4 : caillous + limaces + araignées (très encombré)
-     * etc.
+     * etc.                                                                                        
      * 
      * Tous les no de phase imppairs : ajouter la prochaine liste de difficulté au total des obstacles
      * Tous les no de phase pairs : augmenter le poids de la dernière liste d'obstacles (la plus difficile)
@@ -34,6 +34,7 @@ public class SectionController : MonoBehaviour
     private WeightedPrefabs[] instantiableSections;
     [SerializeField] // debug
     private int nbOfSectionLevelsToUse = 1;
+    private bool maxPhaseReached = false;
 
     private List<WeightedPrefabs[]> prefabsPerLvl; 
 
@@ -81,16 +82,17 @@ public class SectionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int newPhaseNumber = (int) (GameManager.Instance.Score / 300f); // On augmente de phase tous les 300 de score (=300m parcourus)
+        int newPhaseNumber = (int) (GameManager.Instance.Score / 200f); // On augmente de phase tous les 300 de score (=300m parcourus)
 
         // Si changement de phase : on établit quelles sections utiliser pour la génération
-        if (newPhaseNumber > phaseNumber)
+        if (newPhaseNumber > phaseNumber && !maxPhaseReached)
         {
             phaseNumber = newPhaseNumber;
+            maxPhaseReached = phaseNumber == ((prefabsPerLvl.Count - 1) * 2);
 
             bool isPhaseNumberEven = (phaseNumber % 2 == 0);
             // Si numéro de phase impair : une nouvelle difficulté sera ajoutée
-            if (!isPhaseNumberEven && nbOfSectionLevelsToUse <= (prefabsPerLvl.Count - 1))
+            if (!isPhaseNumberEven)
             {
                 nbOfSectionLevelsToUse++;
             }
@@ -110,7 +112,7 @@ public class SectionController : MonoBehaviour
                     {
                         // remplace la référence de l'object sérialisé avec une copie
                         prefabsToAdd[j] = new WeightedPrefabs(prefabsPerLvl[i][j].prefab, prefabsPerLvl[i][j].weight);
-                        prefabsToAdd[j].weight++;
+                        prefabsToAdd[j].weight *= 2;
                     }
                 }
                 else
@@ -135,7 +137,6 @@ public class SectionController : MonoBehaviour
                 Destroy(section);
 
                 // Instancie une nouvelle section aléatoire
-                //TODO : difficulté dynamique
                 GameObject newGround = Instantiate(GetRandomSection());
 
                 // Positionne la section créée en tête des autres
