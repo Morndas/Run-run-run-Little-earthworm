@@ -2,7 +2,7 @@
 --------------------------------------------------------------
 CONTEXTE :
 ----------
-Projet incomplet : Plusieurs jours de dev restants.
+A l'état de prototype.
 
 Réalisé pour le dernier projet de la formation "Programmer des jeux vidéos" débutée en septembre 2024. Projet dû le 15 février 2025.
 
