@@ -16,7 +16,6 @@ Game Over quand on est rattrapé avec un score selon la distance parcourue. Pas 
 FONCTIONNALITES MANQUANTES :
 ----------------------------
 Plusieurs mécaniques restantes à développer dont (liste non exhaustive) :
-- L'implémentation des différentes scenes et menus (Start, Pause, Game over, Crédits etc.)
+- Ecran de crédits
+- Obstacles additionnels
 - La gestion d'une jauge d'humidité pour le ver, laquelle se recharge en collectant les gouttes sur le chemin et octroyant différentes capacités.
-- Une difficulté évolutive selon la distance parcourue, entrainant l'apparition de nouveaux troncons plus difficiles avec différents ennemis.
-- L'ajout de nouveaux obstacles et ennemis (limace dont la trainée de bave nous ralenti, araignée qui nous intercepte etc.)
